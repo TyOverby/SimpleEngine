@@ -1,0 +1,3 @@
+name: SimpleGame
+dependencies:
+  browser: any
