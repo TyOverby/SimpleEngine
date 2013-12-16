@@ -1,3 +1,7 @@
-name: SimpleGame
+name: simple_engine
+version: 1.0.0
+author: Ty Overby <ty@pre-alpha.com>
+description: A small game engine designed to make getting in to game programming in dart quick and easy.
+homepage: https://github.com/TyOverby/SimpleEngine
 dependencies:
   browser: any

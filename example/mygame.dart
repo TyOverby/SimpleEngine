@@ -1,8 +1,8 @@
-import '../web/simplegame.dart';
+import '../lib/simple_engine.dart';
 import 'dart:html';
 
-class MyGame extends SimpleGame {
-  MyGame(): super(query("canvas") as CanvasElement) {
+class MyGame extends CanvasGame {
+  MyGame(): super(querySelector("canvas") as CanvasElement) {
     this.limit(0);
     this.width = 500;
     this.height = 500;

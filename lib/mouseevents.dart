@@ -1,4 +1,4 @@
-part of simplegame;
+part of simple_engine;
 
 class MouseEvents {
   HtmlElement ele_;

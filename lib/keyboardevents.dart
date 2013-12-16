@@ -1,4 +1,4 @@
-part of simplegame;
+part of simple_engine;
 
 class KeyboardEvents {
   HtmlElement ele_;
@@ -6,9 +6,9 @@ class KeyboardEvents {
     ele_ = ele;
   }
 
-  ElementStream<KeyboardEvent> get onKeyDown => ele_.onKeyDown;
-  ElementStream<KeyboardEvent> get onKeyUp => ele_.onKeyUp;
-  ElementStream<KeyboardEvent> get onKeyPress => ele_.onKeyPress;
+  Stream<KeyboardEvent> get onKeyDown => ele_.onKeyDown;
+  Stream<KeyboardEvent> get onKeyUp => ele_.onKeyUp;
+  Stream<KeyboardEvent> get onKeyPress => ele_.onKeyPress;
 
   KeyEvents key(int code) {
     return new KeyEvents(ele_, code);
@@ -35,7 +35,7 @@ class KeyEvents {
 
   bool filter(KeyboardEvent e) => codes_.contains(e.keyCode);
 
-  ElementStream<KeyboardEvent> get onKeyDown => ele_.onKeyDown.where(filter);
-  ElementStream<KeyboardEvent> get onKeyUp => ele_.onKeyUp.where(filter);
-  ElementStream<KeyboardEvent> get onKeyPress => ele_.onKeyPress.where(filter);
+  Stream<KeyboardEvent> get onKeyDown => ele_.onKeyDown.where(filter);
+  Stream<KeyboardEvent> get onKeyUp => ele_.onKeyUp.where(filter);
+  Stream<KeyboardEvent> get onKeyPress => ele_.onKeyPress.where(filter);
 }

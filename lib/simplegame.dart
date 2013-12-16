@@ -1,13 +1,6 @@
-library simplegame;
+part of simple_engine;
 
-import 'dart:html';
-import 'dart:async';
-
-part './mouseevents.dart';
-part './keyboardevents.dart';
-part './touchevents.dart';
-
-abstract class SimpleGame {
+abstract class SimpleGame<R> {
 
   /**
    * Implement to update the internal game state.
@@ -20,7 +13,7 @@ abstract class SimpleGame {
    * [ctx] is the Graphics context for the game.
    * [dt] is the delta-time that was passed in to [update].
    */
-  void draw(CanvasRenderingContext2D ctx, int dt);
+  void draw(R ctx, int dt);
 
   /**
    * Implement to setup event binding.
@@ -31,32 +24,13 @@ abstract class SimpleGame {
   bool _running = false;
   int _lastTime = 0;
   int _frameLimit = 0;
-  CanvasRenderingContext2D _ctx;
-  CanvasElement _ele;
-
-  SimpleGame(CanvasElement ele) {
-    _ele = ele;
-    _ctx = ele.getContext("2d");
-  }
-
-  /*
-   *  Width / Height
-   */
-  int get width => _ele.width;
-  int get height => _ele.height;
-
-  void set width(int nw) {
-    _ele.width = nw;
-  }
-  void set height(int nh) {
-    _ele.height = nh;
-  }
-
-
+  
+  R _context;
 
   void start() {
     if(!_eventsRegistered){
-      bindEvents(new KeyboardEvents(window.document.query("body")), new MouseEvents(_ele), new TouchEvents(_ele));
+      var body = document.querySelector("body");
+      bindEvents(new KeyboardEvents(body), new MouseEvents(body), new TouchEvents(body));
       _eventsRegistered = true;
     }
     if(!_running){
@@ -90,14 +64,14 @@ abstract class SimpleGame {
     int current = new DateTime.now().millisecondsSinceEpoch;
     int dt = current - _lastTime;
 
-    if(dt <= _frameLimit){
+    if(dt < _frameLimit){
       var timer = new Timer(new Duration(milliseconds: (_frameLimit - dt)), ()=>loop_());
       return;
     }
     _lastTime = current;
 
     update(dt);
-    draw(_ctx, dt);
+    draw(_context, dt);
 
     window.animationFrame.then((_)=>loop_());
   }

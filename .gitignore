@@ -1,3 +1,7 @@
 .idea/
 
 example/out*.js*
+pubspec.lock
+example/packages
+lib/packages
+packages/

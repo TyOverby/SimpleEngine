@@ -1,4 +1,4 @@
-part of simplegame;
+part of simple_engine;
 
 class TouchEvents {
   HtmlElement ele_;
