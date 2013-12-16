@@ -1,7 +1,14 @@
 part of simple_engine;
 
-abstract class CanvasGame extends SimpleGame<CanvasRenderingContext2D> {
+abstract class CanvasGame extends SimpleGame {
   CanvasElement _ele;
+  CanvasRenderingContext2D _context; 
+  
+  void canvasDraw(CanvasRenderingContext2D ctx, int dt);
+  
+  void draw(int dt){
+    canvasDraw(_context, dt);
+  }
   
   CanvasGame(CanvasElement ele) {
     _ele = ele;

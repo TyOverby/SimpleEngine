@@ -1,6 +1,6 @@
 part of simple_engine;
 
-abstract class SimpleGame<R> {
+abstract class SimpleGame {
 
   /**
    * Implement to update the internal game state.
@@ -13,7 +13,7 @@ abstract class SimpleGame<R> {
    * [ctx] is the Graphics context for the game.
    * [dt] is the delta-time that was passed in to [update].
    */
-  void draw(R ctx, int dt);
+  void draw(int dt);
 
   /**
    * Implement to setup event binding.
@@ -24,8 +24,6 @@ abstract class SimpleGame<R> {
   bool _running = false;
   int _lastTime = 0;
   int _frameLimit = 0;
-  
-  R _context;
 
   void start() {
     if(!_eventsRegistered){
@@ -71,7 +69,7 @@ abstract class SimpleGame<R> {
     _lastTime = current;
 
     update(dt);
-    draw(_context, dt);
+    draw(dt);
 
     window.animationFrame.then((_)=>loop_());
   }
