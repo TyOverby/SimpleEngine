@@ -66,11 +66,13 @@ abstract class SimpleGame {
       var timer = new Timer(new Duration(milliseconds: (_frameLimit - dt)), ()=>loop_());
       return;
     }
+    
+    window.animationFrame.then((_)=>loop_());
     _lastTime = current;
 
     update(dt);
     draw(dt);
 
-    window.animationFrame.then((_)=>loop_());
+    
   }
 }
